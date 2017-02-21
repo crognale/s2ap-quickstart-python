@@ -14,18 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import config
-import webapp2
-from paste import httpserver
-
-class MainPage(webapp2.RequestHandler):
-    def get(self):
-        self.response.write('test')
 
 
-routes = [
-	('/', MainPage)
-]
-
-app = webapp2.WSGIApplication(routes, debug=True)
-httpserver.serve(app, host=config.HTTP_HOST, port=config.HTTP_PORT)
+#Hostname and port for serving the Quickstart web app
+HTTP_HOST = '0.0.0.0'
+HTTP_PORT = '8080'
