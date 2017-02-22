@@ -15,6 +15,8 @@ limitations under the License.
 """
 
 
+#Keyfile path
+KEYFILE = 'keys/keyFile.json'
 
 #Hostname and port for serving the Quickstart web app
 HTTP_HOST = '0.0.0.0'
