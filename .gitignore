@@ -39,3 +39,7 @@ nosetests.xml
 
 #keyfiles
 keys/*
+
+#local configs
+config.py.mine
+config.py.gen

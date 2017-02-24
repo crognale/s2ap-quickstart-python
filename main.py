@@ -41,9 +41,46 @@ http = httplib2.Http()
 http = credentials.authorize(http)
 
 class MainPage(webapp2.RequestHandler):
+    def loyalty_jwt(self):
+        loyalty_object = {
+                'classId' : config.ISSUER_ID + '.' + config.LOYALTY_CLASS_ID,
+                'id' : config.ISSUER_ID + '.' + config.LOYALTY_OBJECT_ID,
+                'accountId': '1234567890',
+                'accountName': 'Jane Doe',
+                'state': 'active',
+                'version': 1
+        }
+
+        jwt = {
+                'iss': 'samplewebsite.google.com@appspot.gserviceaccount.com',
+                'aud': 'google',
+                'typ': 'savetoandroidpay',
+                'iat':  int(time.time()),
+                'payload': {
+                        'loyaltyClasses': [], # Loyalty classes
+                        'loyaltyObjects': [loyalty_object], # Loyalty objects
+                        'offerClasses': [], # Offer classes
+                        'offerObjects': []  # Offer objects
+                },
+                'origins' : config.ORIGINS
+        }
+
+        with open(config.KEYFILE, 'r') as file_obj:
+                client_credentials = json.load(file_obj)
+        private_key_pkcs8_pem = client_credentials['private_key']
+        signer = crypt.Signer.from_string(private_key_pkcs8_pem)
+        signed_jwt = crypt.make_signed_jwt(signer, jwt)
+        response = webapp2.Response(signed_jwt)
+        print(response)
+        return signed_jwt
+
+
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        template_values = {}
+        loyalty = self.loyalty_jwt()
+        template_values = {
+                'loyalty_jwt': loyalty
+                }
         self.response.write(template.render(template_values))
 
 class InsertClass(webapp2.RequestHandler):
@@ -60,16 +97,24 @@ class InsertClass(webapp2.RequestHandler):
         params = ''
 
         body = {
-            'id': '3160309091166180250.quickstart_loyalty_test', 
-            'issuerName': 'Test Hero Image 0 ',
+            'id': config.ISSUER_ID + '.' + config.LOYALTY_CLASS_ID, 
+            'issuerName': config.ISSUER_NAME,
             'programLogo': {
                 'kind': 'walletobjects#image',
                 'sourceUri': {
                     'kind': 'walletobjects#uri',
-                    'uri': 'http://farm8.staticflickr.com/7340/11177041185_a61a7f2139_o.jpg'
+                    'uri': config.LOYALTY_PROGRAM_LOGO
                 }
             },
-            'programName': 'Program Name',
+            'heroImage': {
+                'kind': 'walletobjects#image',
+                'sourceUri': {
+                    'kind': 'walletobjects#uri',
+                    'uri': config.LOYALTY_HERO_IMAGE
+                }
+
+            },
+            'programName': config.LOYALTY_PROGRAM_NAME,
             'renderSpecs': [
                 {
                     'templateFamily': '1.loyalty_list',

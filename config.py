@@ -14,10 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+#Issuer Id
+ISSUER_ID = '<YOUR ISSUER ID HERE>'
+
+ISSUER_NAME = 'Test Issuer'
+
+LOYALTY_CLASS_ID = 'quickstart_loyalty_test'
+LOYALTY_PROGRAM_NAME = 'Test Loyalty'
+LOYALTY_PROGRAM_LOGO = 'https://lh3.googleusercontent.com/MGmuJePqkG8AiRWlPAHL1KAJV70jRhA66UQqCYboPugLB697JQoALjA0xgMtDkgoB9_QNKzdWPR1fJFCZGKOLbwSAK-WO6J3x30Km5fOJyT33qPcK5dbJqPj3k3FxTX9a0iOGpiI'
+LOYALTY_HERO_IMAGE = 'http://farm4.staticflickr.com/3738/12440799783_3dc3c20606_b.jpg'
+
+LOYALTY_OBJECT_ID = 'quickstart_loyalty_test_obj00'
+
+
+ORIGINS = ['<YOUR ORIGINS HERE>']
 
 #Keyfile path
 KEYFILE = 'keys/keyFile.json'
 
-#Hostname and port for serving the Quickstart web app
+#Hostname and port for serving the web app
 HTTP_HOST = '0.0.0.0'
 HTTP_PORT = '8080'
