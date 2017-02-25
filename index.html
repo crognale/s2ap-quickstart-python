@@ -9,8 +9,15 @@
 	</head>
 	<body>
 		<button id="loyalty">Insert Loyalty Class</button>
+		<button id="giftcard">Insert Gift Card Class</button>
+		<button id="offer">Insert Offer Class</button>
 		<br>
-		Save object:<br>
+		<h1>Save object:</h1>
+		<br>
 		loyalty: <g:savetoandroidpay jwt="{{ loyalty_jwt }}" onsuccess = "successHandler" onfailure="failureHandler" size="small" theme="light"></g:savetoandroidpay>
+		<br>
+		gift card: <g:savetoandroidpay jwt="{{ giftcard_jwt }}" onsuccess = "successHandler" onfailure="failureHandler" size="small" theme="light"></g:savetoandroidpay>
+		<br>
+		offer: <g:savetoandroidpay jwt="{{ offer_jwt }}" onsuccess = "successHandler" onfailure="failureHandler" size="small" theme="light"></g:savetoandroidpay>
 	</body>
 </html>
