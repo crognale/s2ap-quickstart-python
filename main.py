@@ -29,6 +29,10 @@ import json
 from urlparse import urlparse
 import urllib
 
+import loyalty
+import giftcard
+import offer
+
 
 JINJA_ENVIRONMENT = jinja2.Environment(
         loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -77,133 +81,23 @@ class MainPage(webapp2.RequestHandler):
         response = webapp2.Response(signed_jwt)
         return signed_jwt
 
-    def loyalty_jwt(self):
-        loyalty_object = {
-                'classId' : config.ISSUER_ID + '.' + config.LOYALTY_CLASS_ID,
-                'id' : config.ISSUER_ID + '.' + config.LOYALTY_OBJECT_ID,
-                'accountId': '1234567890',
-                'accountName': 'Jane Doe',
-                'state': 'active',
-                'version': 1
-        }
-
-        return self.jwt(loyalty_object, 'loyalty')
-
-    def giftcard_jwt(self):
-        giftcard_object = {
-                'classId' : config.ISSUER_ID + '.' + config.GIFTCARD_CLASS_ID,
-                'id' : config.ISSUER_ID + '.' + config.GIFTCARD_OBJECT_ID,
-                'cardNumber': config.GIFTCARD_OBJECT_CARDNUMBER,
-                'balance': {
-                    'currencyCode': 'USD',
-                    'kind': 'walletobjects#money',
-                    'micros': config.GIFTCARD_OBJECT_BALANCE
-                },
-                'state': 'active',
-                'version': 1
-        }
-
-        return self.jwt(giftcard_object, 'giftcard')
-
-    def offer_jwt(self):
-        offer_object = {
-                'classId' : config.ISSUER_ID + '.' + config.OFFER_CLASS_ID,
-                'id' : config.ISSUER_ID + '.' + config.OFFER_OBJECT_ID,
-                'state': 'active',
-                'version': 1
-        }
-
-        return self.jwt(offer_object, 'offer')
 
 
 
 
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
-        loyalty = self.loyalty_jwt()
-        giftcard = self.giftcard_jwt()
-        offer = self.offer_jwt()
+        loyalty_jwt = self.jwt(loyalty.loyalty_object(), 'loyalty')
+        giftcard_jwt = self.jwt(giftcard.giftcard_object(), 'giftcard')
+        offer_jwt = self.jwt(offer.offer_object(), 'offer')
         template_values = {
-                'loyalty_jwt': loyalty,
-                'giftcard_jwt': giftcard,
-                'offer_jwt': offer
+                'loyalty_jwt': loyalty_jwt,
+                'giftcard_jwt': giftcard_jwt,
+                'offer_jwt': offer_jwt
                 }
         self.response.write(template.render(template_values))
 
 class InsertClass(webapp2.RequestHandler):
-    def loyalty_class(self):
-        body = {
-            'id': config.ISSUER_ID + '.' + config.LOYALTY_CLASS_ID, 
-            'issuerName': config.ISSUER_NAME,
-            'programLogo': {
-                'kind': 'walletobjects#image',
-                'sourceUri': {
-                    'kind': 'walletobjects#uri',
-                    'uri': config.LOYALTY_PROGRAM_LOGO
-                }
-            },
-            'heroImage': {
-                'kind': 'walletobjects#image',
-                'sourceUri': {
-                    'kind': 'walletobjects#uri',
-                    'uri': config.LOYALTY_HERO_IMAGE
-                }
-
-            },
-            'programName': config.LOYALTY_PROGRAM_NAME,
-            'reviewStatus': 'underReview'
-        }
-        return body
-
-    def giftcard_class(self):
-        body = {
-            'id': config.ISSUER_ID + '.' + config.GIFTCARD_CLASS_ID, 
-            'issuerName': config.ISSUER_NAME,
-            'merchantName': config.GIFTCARD_MERCHANT_NAME,
-            'programLogo': {
-                'kind': 'walletobjects#image',
-                'sourceUri': {
-                    'kind': 'walletobjects#uri',
-                    'uri': config.GIFTCARD_PROGRAM_LOGO
-                }
-            },
-            'heroImage': {
-                'kind': 'walletobjects#image',
-                'sourceUri': {
-                    'kind': 'walletobjects#uri',
-                    'uri': config.GIFTCARD_HERO_IMAGE
-                }
-
-            },
-            'reviewStatus': 'underReview'
-        }
-        return body
-
-    def offer_class(self):
-        body = {
-            'id': config.ISSUER_ID + '.' + config.OFFER_CLASS_ID, 
-            'issuerName': config.ISSUER_NAME,
-            'provider': config.OFFER_PROVIDER,
-            'titleImage': {
-                'kind': 'walletobjects#image',
-                'sourceUri': {
-                    'kind': 'walletobjects#uri',
-                    'uri': config.OFFER_TITLE_IMAGE
-                }
-            },
-            'heroImage': {
-                'kind': 'walletobjects#image',
-                'sourceUri': {
-                    'kind': 'walletobjects#uri',
-                    'uri': config.LOYALTY_HERO_IMAGE
-                }
-
-            },
-            'redemptionChannel': 'both',
-            'title': config.OFFER_TITLE,
-            'reviewStatus': 'underReview'
-        }
-        return body
 
     def get(self):
         headers = {
@@ -216,13 +110,13 @@ class InsertClass(webapp2.RequestHandler):
 
         if classType == 'loyalty':
             path = '/loyaltyClass'
-            body = self.loyalty_class()
+            body = loyalty.loyalty_class()
         elif classType == 'giftcard':
             path = '/giftCardClass'
-            body = self.giftcard_class()
+            body = giftcard.giftcard_class()
         elif classType == 'offer':
             path = '/offerClass'
-            body = self.offer_class()
+            body = offer.offer_class()
 
         method='POST'
         params = ''
