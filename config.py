@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+SERVICE_ACCOUNT = '<YOUR SERVICE ACCOUNT HERE>'
+
 #Issuer Id
 ISSUER_ID = '<YOUR ISSUER ID HERE>'
 

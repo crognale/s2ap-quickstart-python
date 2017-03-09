@@ -54,7 +54,7 @@ class MainPage(webapp2.RequestHandler):
             offerObjects = [obj]
 
         jwt = {
-                'iss': 'samplewebsite.google.com@appspot.gserviceaccount.com',
+                'iss': config.SERVICE_ACCOUNT,
                 'aud': 'google',
                 'typ': 'savetoandroidpay',
                 'iat':  int(time.time()),
