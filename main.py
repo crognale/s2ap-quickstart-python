@@ -151,16 +151,6 @@ class InsertClass(webapp2.RequestHandler):
 
             },
             'programName': config.LOYALTY_PROGRAM_NAME,
-            'renderSpecs': [
-                {
-                    'templateFamily': '1.loyalty_list',
-                    'viewName': 'g_list'
-                },
-                {
-                    'templateFamily': '1.loyalty_expanded',
-                    'viewName': 'g_expanded'
-                }
-            ],
             'reviewStatus': 'underReview'
         }
         return body
@@ -211,16 +201,6 @@ class InsertClass(webapp2.RequestHandler):
             },
             'redemptionChannel': 'both',
             'title': config.OFFER_TITLE,
-            'renderSpecs': [
-                {
-                    'templateFamily': '1.offer_list',
-                    'viewName': 'g_list'
-                },
-                {
-                    'templateFamily': '1.offer_expanded',
-                    'viewName': 'g_expanded'
-                }
-            ],
             'reviewStatus': 'underReview'
         }
         return body
