@@ -6,18 +6,43 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script>
 		<script src="https://apis.google.com/js/plusone.js" type="text/javascript"></script>
 		<script src="app.js"></script>
+		<style>
+			body {
+				margin-top: 50px;
+				margin-left: 50px;
+				font-family: verdana;
+			}
+			p {
+				margin-left: 50px;
+			}
+		</style>
 	</head>
 	<body>
+		<h1>Save to Android Pay Quickstart</h1>
+		<h2>Insert Classes:</h2>
+		<p>This should be triggered server-side in production.</p>
+		<p>
 		<button id="loyalty">Insert Loyalty Class</button>
 		<button id="giftcard">Insert Gift Card Class</button>
 		<button id="offer">Insert Offer Class</button>
+		</p>
 		<br>
-		<h1>Save object:</h1>
-		<br>
-		loyalty: <g:savetoandroidpay jwt="{{ loyalty_jwt }}" onsuccess = "successHandler" onfailure="failureHandler" size="small" theme="light"></g:savetoandroidpay>
-		<br>
-		gift card: <g:savetoandroidpay jwt="{{ giftcard_jwt }}" onsuccess = "successHandler" onfailure="failureHandler" size="small" theme="light"></g:savetoandroidpay>
-		<br>
-		offer: <g:savetoandroidpay jwt="{{ offer_jwt }}" onsuccess = "successHandler" onfailure="failureHandler" size="small" theme="light"></g:savetoandroidpay>
+		<h2>Save Objects:</h2>
+		<p>
+		<table>
+			<tr>
+				<td>Loyalty:</td>
+				<td><g:savetoandroidpay jwt="{{ loyalty_jwt }}" onsuccess = "successHandler" onfailure="failureHandler" size="small" theme="light"></g:savetoandroidpay></td>
+			</tr>
+			<tr>
+				<td>Gift Card:</td>
+				<td><g:savetoandroidpay jwt="{{ giftcard_jwt }}" onsuccess = "successHandler" onfailure="failureHandler" size="small" theme="light"></g:savetoandroidpay></td>
+			</tr>
+			<tr>
+				<td>Offer:</td>
+				<td><g:savetoandroidpay jwt="{{ offer_jwt }}" onsuccess = "successHandler" onfailure="failureHandler" size="small" theme="light"></g:savetoandroidpay></td>
+			</tr>
+		</table>
+		</p>
 	</body>
 </html>

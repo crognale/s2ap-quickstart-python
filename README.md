@@ -1,10 +1,8 @@
-TODO format
+s2ap-quickstart-Python
+======================
 
-Dependencies 
-
+## Dependencies
 webapp2 (pip install webapp2)
 webob (pip install webob)
 paste (pip install paste)
-
-jinja2
 

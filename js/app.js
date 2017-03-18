@@ -3,7 +3,7 @@
  */
 
 function init() {
-	// Bind click event for 'Insert Loyalty Class' button
+	//Call to insert class
 	document.getElementById('loyalty').addEventListener('click', function() {
 		$.get('insertClass?type=loyalty', function(data) {
 			console.log(data);

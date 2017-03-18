@@ -15,35 +15,15 @@ limitations under the License.
 """
 
 SERVICE_ACCOUNT = '<YOUR SERVICE ACCOUNT HERE>'
-
-#Issuer Id
 ISSUER_ID = '<YOUR ISSUER ID HERE>'
 
-ISSUER_NAME = 'Test Issuer'
-
 LOYALTY_CLASS_ID = 'quickstart_loyalty_test'
-LOYALTY_PROGRAM_NAME = 'Test Loyalty'
-LOYALTY_PROGRAM_LOGO = 'https://lh3.googleusercontent.com/MGmuJePqkG8AiRWlPAHL1KAJV70jRhA66UQqCYboPugLB697JQoALjA0xgMtDkgoB9_QNKzdWPR1fJFCZGKOLbwSAK-WO6J3x30Km5fOJyT33qPcK5dbJqPj3k3FxTX9a0iOGpiI'
-LOYALTY_HERO_IMAGE = 'http://farm4.staticflickr.com/3738/12440799783_3dc3c20606_b.jpg'
-
 LOYALTY_OBJECT_ID = 'quickstart_loyalty_test_obj00'
 
 GIFTCARD_CLASS_ID = 'quickstart_giftcard_test'
-GIFTCARD_MERCHANT_NAME = 'Test Giftcard Merchant'
-GIFTCARD_PROGRAM_LOGO = 'https://lh3.googleusercontent.com/MGmuJePqkG8AiRWlPAHL1KAJV70jRhA66UQqCYboPugLB697JQoALjA0xgMtDkgoB9_QNKzdWPR1fJFCZGKOLbwSAK-WO6J3x30Km5fOJyT33qPcK5dbJqPj3k3FxTX9a0iOGpiI'
-GIFTCARD_HERO_IMAGE = 'http://farm4.staticflickr.com/3738/12440799783_3dc3c20606_b.jpg'
-
 GIFTCARD_OBJECT_ID = 'quickstart_giftcard_test_obj0'
-GIFTCARD_OBJECT_CARDNUMBER = '123456789'
-GIFTCARD_OBJECT_BALANCE = 10000000
-
 
 OFFER_CLASS_ID = 'quickstart_offer_test'
-OFFER_PROVIDER = 'Test Offer Provider'
-OFFER_TITLE_IMAGE = 'https://lh3.googleusercontent.com/MGmuJePqkG8AiRWlPAHL1KAJV70jRhA66UQqCYboPugLB697JQoALjA0xgMtDkgoB9_QNKzdWPR1fJFCZGKOLbwSAK-WO6J3x30Km5fOJyT33qPcK5dbJqPj3k3FxTX9a0iOGpiI'
-OFFER_HERO_IMAGE = 'http://farm4.staticflickr.com/3738/12440799783_3dc3c20606_b.jpg'
-OFFER_TITLE = '20% off any T-shirt'
-
 OFFER_OBJECT_ID = 'quickstart_offer_test_obj0'
 
 

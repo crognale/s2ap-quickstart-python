@@ -33,7 +33,6 @@ import loyalty
 import giftcard
 import offer
 
-
 JINJA_ENVIRONMENT = jinja2.Environment(
         loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
         extensions=['jinja2.ext.autoescape'],
@@ -81,10 +80,6 @@ class MainPage(webapp2.RequestHandler):
         response = webapp2.Response(signed_jwt)
         return signed_jwt
 
-
-
-
-
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('index.html')
         loyalty_jwt = self.jwt(loyalty.loyalty_object(), 'loyalty')
@@ -98,7 +93,6 @@ class MainPage(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
 class InsertClass(webapp2.RequestHandler):
-
     def get(self):
         headers = {
                 'Accept': 'application/json',
@@ -119,10 +113,8 @@ class InsertClass(webapp2.RequestHandler):
             body = offer.offer_class()
 
         method='POST'
-        params = ''
 
-        target = urlparse(uri+path+'?'+params)
-
+        target = urlparse(uri+path)
         response, content = http.request(
                 target.geturl(),
                 method,
@@ -130,7 +122,6 @@ class InsertClass(webapp2.RequestHandler):
                 headers)
 
         data = json.loads(content)
-
         self.response.write(json.dumps(data, indent=4))
 
 class AppJs(webapp2.RequestHandler):
