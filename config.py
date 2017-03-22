@@ -19,7 +19,7 @@ ISSUER_ID = '<YOUR ISSUER ID HERE>'
 
 
 # IDs for Class and Object insertion. A Class with a given Class ID can only be
-# inserted once. Should only include alphanumeric characters, '_' or '-'.
+# inserted once. 
 LOYALTY_CLASS_ID = 'quickstart_loyalty_test'
 LOYALTY_OBJECT_ID = 'quickstart_loyalty_test_obj0'
 
