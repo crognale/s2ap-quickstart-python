@@ -3,7 +3,8 @@
  */
 
 function init() {
-	//Call to insert class
+	// Calls to insert classes
+	
 	document.getElementById('loyalty').addEventListener('click', function() {
 		$.get('insertClass?type=loyalty', function(data) {
 			console.log(data);
